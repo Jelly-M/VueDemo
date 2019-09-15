@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+        .inner {
+            height: 150px;
+            background-color: cadetblue;
+        }
+        .outer{
+            padding: 10px;
+            background-color: brown;
+        }
+    </style>
+</head>
+ 
+<body>
+    <!----------
+        .stop
+        .prevent
+        .capture
+        .self
+        .once
+    ----------->
+
+    <div id="app">
+        <!--（1）.stop 阻止事件冒泡-->
+        <!-- <div class="inner" @click='divHandler'>
+            <input type="button" value="戳他" @click.stop='btnHandler'>
+        </div> -->
+
+        <!--（2）.prevent 阻止默认行为-->
+        <!-- <a href="http://www.baidu.com" @click.prevent="linkClick">超链接</a> -->
+
+        <!--（3）.capture 使用捕货触发机制，虽然先点击里面的，但是执行先执行外层div-->
+        <!-- <div class="inner" @click.capture='divHandler'>
+            <input type="button" value="戳他" @click.stop='btnHandler'>
+        </div> -->
+
+        <!--（4）.self 只有点击自己才触发自己点击事件，其他的冒泡，捕获都不行-->
+        <!-- <div class="inner" @click.self='divHandler'>
+            <input type="button" value="戳他" @click.stop='btnHandler'>
+        </div> -->
+
+        <!--（5）.once 事件只触发一次，像下面的只阻止一次默认行为调转百度，第二次不会阻止，而且事件修饰符可以连写-->
+
+        <!-- <a href="http://www.baidu.com" @click.prevent.once="linkClick">超链接</a> -->
+
+        <!--（6） .stop和.self 区别，self不能阻止冒泡，这是自己不触发，冒泡会接着往上走-->
+        <div class="outer" @click='outHandler'>
+            <div class="inner" @click.self='divHandler'>
+                <input type="button" value="戳他" @click='btnHandler'>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+                divHandler() {
+                    console.log("点击了divHandler");
+                },
+                btnHandler() {
+                    console.log("点击了btnHandler");
+                },
+                linkClick() {
+                    console.log("点击了linkClick");
+                },
+                outHandler(){
+                    console.log("点击了outHandler");
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

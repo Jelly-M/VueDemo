@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        v-if
+        v-show 
+     -->
+    <div id="app">
+        <input type="button" value="toggle" v-on:click='toggle'>
+        <!-- v-if 每次都会重现创建元素和删除元素 -->
+        <!-- v-show 每次不会对dom进行删除或者创建只会控制显示隐藏 display:none -->
+        <!-- v-if 有较高的切换性能消耗 -->
+        <!-- v-show 有较高的初始渲染消耗 -->
+        <!-- 如果元素涉及频繁切换，最后啊不要使用v-if，使用v-show -->
+        <!-- 如果页面元素可能永远不被显示被用户看到，那么使用 v-if -->
+        <h3 v-if="flag">这是v-if控制</h3>
+        <h3 v-show="flag">这是v-show控制</h3>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data () { 
+                return {
+                    flag:true
+                }
+            },
+            methods: {
+                toggle(){
+                    this.flag=!this.flag;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .thin {
+            font-weight: 200;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .activ {
+            letter-spacing: 0.5em;
+            /*中文间距使用这个属性 */
+        }
+    </style>
+</head>
+ 
+<body>
+    <!-- 属性绑定
+    .class
+    -->
+    <div id="app">
+        <!-- 传统方式 -->
+        <!-- <h1 class="red thin">这儿用来测试样式的使用的集中方式</h1> -->
+
+        <!-- 第一种方式 直接传递一个数组，注意，这里的class 需要使用 v-bind 绑定 -->
+        <!-- <h1 v-bind:class="['red','thin']">这儿用来测试样式的使用的集中方式</h1> -->
+
+        <!--  第二种在数组中使用三元表达式 -->
+        <!-- <h1 v-bind:class="['red','thin',flag?'activ':'italic']">这儿用来测试样式的使用的集中方式</h1> -->
+
+        <!-- 第三种使用对象 -->
+        <!-- <h1 v-bind:class="['red','thin',{'italic':flag}]">这儿用来测试样式的使用的集中方式</h1> -->
+
+        <!-- 第四种使用全对象 -->
+        <h1 v-bind:class="classOjb">这儿用来测试样式的使用的集中方式</h1>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                flag:true,
+                classOjb:{'red':true,activ:true,italic:true,thin:false}  //属性绑定变量
+            },
+            methods: {
+                
+            }
+
+        })
+    </script>
+</body>
+
+</html>

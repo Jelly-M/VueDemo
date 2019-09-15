@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+
+<body>
+    <!-- v-for key 的使用，确保model显示数据和页面显示唯一对应 -->
+    <div id="app">
+        <div><label>id:</label><input type="text" v-model="id"></div>
+        <div><label>名字：</label><input type="text" v-model="name" /></div>
+        <div><input type="button" value="添加" v-on:click="add"></div>
+
+        <!-- 注意：v-for 循环的时候，key,的属性值只能使用string或者number -->
+        <!-- 注意 key 使用的时候必须使用v-bind 属性绑定的形式，指定key的值 -->
+        <!-- 在组件中使用v-for 循环的时候或者在一些特殊情况，必须指定唯一得字符串或者数字类型的 key :值 -->
+        <p v-for="item in list" v-bind:key="item.id">
+            <input type="checkbox" name="" id="">{{item.id}}----{{item.name}}
+        </p>
+
+    </div> 
+    <script>
+        var vm = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    id: 0,
+                    name: '',
+                    list: [{
+                            id: 1,
+                            name: '小二'
+                        },
+                        {
+                            id: 2,
+                            name: '小三'
+                        },
+                        {
+                            id: 3,
+                            name: '小四'
+                        },
+                        {
+                            id: 4,
+                            name: '小五'
+                        },
+                    ]
+                }
+            },
+            methods: {
+                add() {
+                    //this.list.push({id:this.id,name:this.name});
+                    this.list.unshift({
+                        id: this.id,
+                        name: this.name
+                    }); //在最上面添加
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
